@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.post('/',authMiddleware,createProject)
 router.get('/',authMiddleware,getProjects)
-router.put('/:id',authMiddleware,updateProject)
-router.delete('/:id',authMiddleware,deleteProject)
+router.put('/:projectId',authMiddleware,updateProject)
+router.delete('/:projectId',authMiddleware,deleteProject)
 
 export default router

@@ -18,7 +18,7 @@ export const createProject  = async(req,res)=>{
 
 export const updateProject = async (req, res) => {
   const { title, description } = req.body;
-  const { id } = req.params;
+  const { projectId } = req.params;
   const userId = req.userId;
 
   try {
@@ -27,7 +27,7 @@ export const updateProject = async (req, res) => {
        SET title = $1, description = $2
        WHERE id = $3 AND user_id = $4
        RETURNING id, title, description`,
-      [title, description, id, userId]
+      [title, description, projectId, userId]
     );
 
     if (result.rows.length === 0) {
@@ -42,13 +42,13 @@ export const updateProject = async (req, res) => {
 };
 
 export const deleteProject = async (req, res) => {
-  const { id } = req.params;
+  const { projectId } = req.params;
   const userId = req.userId;
 
   try {
     await pool.query(
       `DELETE FROM projects WHERE id = $1 AND user_id = $2`,
-      [id, userId]
+      [projectId, userId]
     );
 
     res.json({ success: true });

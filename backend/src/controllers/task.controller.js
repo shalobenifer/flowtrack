@@ -24,8 +24,8 @@ export const updateTask =async (req,res)=>{
     const { taskId } = req.params;
 
     try{
-        const result = await pool.query('update tasks set title=$1,description=$2 where id=$3 returning id,title,description,status,priority' [title, description,taskId])
-        res.status(200).json({success:true,project: result.rows[0]})
+        const result = await pool.query('update tasks set title=$1,description=$2 where id=$3 returning id,title,description,status,priority', [title, description, taskId])
+        res.status(200).json({success:true,task: result.rows[0]})
     }
     catch (error) {
     console.error(error);
