@@ -1,12 +1,23 @@
-import express from 'express'
-import { authMiddleware} from '../middleware/auth.middleware.js'
-import { createProject, updateProject, deleteProject, getProjects } from '../controllers/project.controller.js'
+import express from "express";
+import taskRoute from "./task.route.js";
+import { authMiddleware } from "../middleware/auth.middleware.js";
+import {
+  createProject,
+  updateProject,
+  deleteProject,
+  getProjects,
+  getProject,
+} from "../controllers/project.controller.js";
 
-const router = express.Router()
+const router = express.Router();
+router.use(authMiddleware);
 
-router.post('/',authMiddleware,createProject)
-router.get('/',authMiddleware,getProjects)
-router.put('/:projectId',authMiddleware,updateProject)
-router.delete('/:projectId',authMiddleware,deleteProject)
+router.post("/", createProject);
+router.get("/", getProjects);
+router.patch("/:projectId", updateProject);
+router.delete("/:projectId", deleteProject);
+router.get("/:projectId", getProject);
 
-export default router
+router.use("/:projectId/tasks", taskRoute);
+
+export default router;
