@@ -1,7 +1,7 @@
 
 
 CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
+  id UUID PRIMARY KEY DEFAULT uuidv7(),
   name  VARCHAR(100) NOT NULL,
   email VARCHAR(150) UNIQUE NOT NULL,
   password_hash TEXT NOT NULL,
@@ -9,14 +9,10 @@ CREATE TABLE users (
   updated_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE blacklisted_tokens (
-  id SERIAL PRIMARY KEY,
-  token TEXT NOT NULL
-);
-
 CREATE TABLE projects (
-  id SERIAL PRIMARY KEY,
-  user_id INT REFERENCES users(id) ON DELETE CASCADE,
+  id UUID PRIMARY KEY DEFAULT uuidv7(),
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+  icon VARCHAR,
   title VARCHAR(150) NOT NULL,
   description TEXT,
   status VARCHAR(20) DEFAULT 'Pending' CHECK (status IN ('On track', 'Pending', 'Completed')),
@@ -25,8 +21,8 @@ CREATE TABLE projects (
 );
 
 CREATE TABLE tasks (
-  id SERIAL PRIMARY KEY,
-  project_id INT REFERENCES projects(id) ON DELETE CASCADE,
+  id UUID PRIMARY KEY DEFAULT uuidv7(),
+  project_id UUID REFERENCES projects(id) ON DELETE CASCADE,
   title VARCHAR(150) NOT NULL,
   description TEXT,
   priority VARCHAR(20) DEFAULT 'Medium' CHECK(priority IN ('Low','Medium','High')),

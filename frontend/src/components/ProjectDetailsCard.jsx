@@ -38,7 +38,7 @@ const ProjectDetailsCard = ({ project }) => {
   });
 
   const progress =
-    project.total_tasks === 0
+    project.total_tasks == 0
       ? 0
       : Math.round((project.completed_tasks / project.total_tasks) * 100);
 

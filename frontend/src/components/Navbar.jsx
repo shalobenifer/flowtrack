@@ -8,9 +8,6 @@ import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import flowTrackLogo from "../assets/flowtrack-logo.png";
 import userAvatar from "../assets/user-avatar.png";
 
-import "@szhsin/react-menu/dist/index.css";
-import "@szhsin/react-menu/dist/transitions/zoom.css";
-
 const NavBar = () => {
   const navigate = useNavigate();
 
@@ -70,9 +67,15 @@ const NavBar = () => {
               />
             </MenuButton>
           }
+          menuClassName="bg-white  dark:bg-gray-900 flex flex-col justify-center py-2 rounded-lg shadow-lg cursor-pointer"
         >
-          <MenuItem>Profile</MenuItem>
-          <MenuItem onClick={logoutUser} className="text-red-600">
+          <MenuItem className="px-6 py-2 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-200">
+            Profile
+          </MenuItem>
+          <MenuItem
+            onClick={logoutUser}
+            className="text-red-600 flex items-center gap-1 px-6 py-1 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-200"
+          >
             <MdLogout />
             Logout
           </MenuItem>
