@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Projects from "./pages/Projects";
 import ProjectDetails from "./pages/ProjectDetails";
 import NotFound from "./pages/NotFound";
-import ProtectedRoute from "./routes/protectedRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
 
 const App = () => (
